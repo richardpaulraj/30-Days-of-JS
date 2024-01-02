@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p> <!--right clicked on the Elements > break on option > attribute modification to check if you dont know whats happening  -->
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log('Hello')
+
+    // Interpolated
+    console.log(`2+2 is ${2+2}`)
+
+    // Styled
+    console.log('%c I am a Programmer', 'font-size: 50px; background-color: red; color: yellow') // Here you can add styles whatever you wanted in the console if you add %c before and specify the styles after the comma
+
+
+    // warning!
+    console.warn('Warning')
+
+    // Error :|
+    console.error('Error')
+    // Info
+    console.info('Its me Richard behind the Screen') // it should display i symbol but its not displaying
+
+    // Testing
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('Richard'), 'That is wrong!') //It will only tell if its false
+
+
+    // clearing
+
+    // console.clear()
+
+
+    // Viewing DOM Elements
+      console.dir(p) //It will show all the methods in that p elem
+
+
+    // Grouping together this will add it in groups 
+      dogs.forEach(dog=>{
+
+        console.groupCollapsed(`${dog.name}`)
+
+        console.log(`This is ${dog.name}`)
+        console.log(`${dog.name} is ${dog.age} years old`)
+
+        console.groupEnd(`${dog.name}`)
+      })
+
+
+    // counting
+
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+
+    // timing
+
+      console.time('fetching data')
+      fetch('https://api.github.com/users/richardpaulraj')
+        .then(data => data.json())
+        .then(data => {
+          console.timeEnd('fetching data')
+          console.log(data)
+        })
+
+    //table
+    console.table(dogs)
+
+  </script>
+</body>
+</html>
