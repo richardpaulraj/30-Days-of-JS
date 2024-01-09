@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div>
+
+  <style>
+  html {
+    color: black;
+    font-family: sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    font-size: 100px;
+  }
+  </style>
+
+<script>
+
+const hero = document.querySelector('.hero')
+const text = hero.querySelector('h1')
+
+const walk = 1000 // how may pixel your shadow should go
+
+function shadow(e){
+
+  const {offsetHeight: height, offsetWidth: width} = hero
+  let {offsetX : x, offsetY : y} = e
+
+  // console.log(e.target)
+  // console.log(this)
+
+  if(this !== e.target){ //why we are doing this is the offset x and y works properly until it find the child elemt h1 which is inside once it finds it it give the value respect to that h1 elem in simple words the x an y was properly working but when it came to the center of the screen .i.e it finds the child h1 and starts the value form 0 to avoid this we are doing this 
+    x += e.target.offsetLeft
+    y += e.target.offsetTop
+  }
+const xWalk = Math.round( ((x / width) * walk) - (walk/2) ) //Simple Math x is the offset it starts from 0 and goes until 2000+ depending on the size of the screen so we are dividing with the to screen width to get the value between 0 to 1 and multiplying it with walk to get the number upto that range and subtracting by half of it to get negative and positive value
+const yWalk = Math.round( ((y / height) * walk) - (walk/2) ) 
+
+text.style.textShadow = `
+  ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+  ${xWalk * -1}px ${yWalk}px 0 rgba(0, 255,255,0.7),
+  ${yWalk}px ${xWalk * -1}px 0 rgba(0, 255,0,0.7),
+  ${yWalk * -1}px ${xWalk}px 0 rgba(0, 0,255,0.7)
+
+
+  
+`
+}
+
+hero.addEventListener('mousemove', shadow)
+</script>
+</body>
+</html>
